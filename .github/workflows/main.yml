@@ -1,0 +1,17 @@
+name: OWASP ZAP DAST Scan
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'URL để quét'
+        required: true
+        default: 'http://your-deployed-url.com'
+
+jobs:
+  zap_scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: OWASP ZAP Baseline Scan
+        uses: zaproxy/action-baseline@v0.10.0
+        with:
+          target: ${{ github.event.inputs.target }}
